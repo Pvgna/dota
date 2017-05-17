@@ -62,6 +62,16 @@ module Dota
         end
       end
 
+      def match_sequence(options = {})
+        options[:start_at_match_seq_num] = options.delete(:after) if options[:after]
+        options[:matches_requested] = options.delete(:limit) if options[:limit]
+
+        response = get("IDOTA2Match_570", "GetMatchHistoryBySequenceNum", options)["result"]
+        if response && (matches = response["matches"] || [])
+          matches.map {|match| Match.new(match)}
+        end
+      end
+
       def leagues
         response = get("IDOTA2Match_570", "GetLeagueListing", language: "en")["result"]
         if response && (leagues = response["leagues"] || [])
