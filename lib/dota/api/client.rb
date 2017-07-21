@@ -56,8 +56,10 @@ module Dota
           options[:tournament_games_only] = options.delete(:league_only) if options[:league_only]
 
           response = get("IDOTA2Match_570", "GetMatchHistory", options)["result"]
-          if response && (matches = response["matches"] || [])
-            matches.map { |match| Match.new(match) }
+          if response["status"] == 15
+            raise Dota::API::PermissionException.new(response["statusDetail"])
+          elsif response && (matches = response["matches"] || [])
+            matches.map {|match| Match.new(match)}
           end
         end
       end

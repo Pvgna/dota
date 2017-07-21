@@ -7,6 +7,7 @@ require 'dota/version'
 require 'dota/utils/mapped'
 require 'dota/utils/inspectable'
 
+require 'dota/api/permission_exception'
 require 'dota/api/entity'
 
 require 'dota/api/basic_match'
