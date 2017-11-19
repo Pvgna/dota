@@ -38,7 +38,8 @@ module Dota
         19 => "Event",
         20 => "All Random Death Match",
         21 => "1v1 Solo Mid",
-        22 => "Ranked All Pick"
+        22 => "Ranked All Pick",
+        23 => "Turbo",
       }.freeze
 
       SKILL_LEVELS = {
